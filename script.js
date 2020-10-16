@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   //Number entered by user.
   //4 is just a placeholder until we create the input and get the value.
   var userNumber = 4;
@@ -17,7 +16,22 @@ $(document).ready(function () {
 
     });
   }
+  
 
+  function goodReads() {
+    var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=spiderman"
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+        console.log(response)
+    });
+  }
+
+  // FUNCTION CALLS
+  goodReads()
   getSuperHero(userNumber);
 
-});
+  // EVENT LISTENERS
+
+})
