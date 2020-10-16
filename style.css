@@ -62,11 +62,17 @@ aside{
   /* character image from api call styling */
   #characterimage{
     height: 350px;
-    width: 600px;
+    width: 500px;
     float: right;
     border: solid;
     padding: 10px;
   }
+  /* api called image styling */
+  #image{
+    height: 300px;
+    width: 500px;
+    object-fit: cover;
+    }
 
   /* book image holder styling */
   #bookimage{
