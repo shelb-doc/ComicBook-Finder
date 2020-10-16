@@ -85,3 +85,10 @@ img{
     width: 500px;
     object-fit: cover;
 }
+
+footer {
+    height: 60px;
+    line-height: 60px;
+    background-color: #ff000057;
+    font-family: 'Bangers', cursive;
+}
