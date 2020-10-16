@@ -8,6 +8,30 @@
 
 $(document).ready(function () {
   $("#myModal").modal();
+
+  var quizContainer = document.getElementById("quiz");
+  var questionContainer = document.getElementById("question-container");
+  var answerContainer = document.getElementById("answer-container");
+
+  var questionArray = [
+    {
+      question: "Avengers 1 or Avengers 2?",
+
+      choices: ["A", "B"],
+    },
+    {
+      question: "Dead pool or Spider Man?",
+
+      choices: ["A", "B"],
+    },
+
+    {
+      question: "Joker or Batman?",
+
+      choices: ["A", "B"],
+    },
+  ];
+
   function superhero() {
     var queryURL =
       "https://superheroapi.com/api.php/10164273699360858/search/batman";
