@@ -1,11 +1,15 @@
-/* Cominc Font */
+/* Comic Font from Google Font */
 @import url(https://fonts.googleapis.com/css?family=Bangers);
 
+
+
+/* Top Margin */
 #namerow{
     margin-top: 40px;
 }
 
-/* Charather Name Element Style */
+
+/* Character Name Styling */
 #characterName{
     height: 70px;
     width: 500px;
@@ -28,7 +32,7 @@
     box-shadow:3px 3px 0 #222;
 }
 
-/* Site Header on left side of landing page Element Style */
+/* Site Header Styling */
 aside{
     margin:25px;
     width:250px;
@@ -39,7 +43,7 @@ aside{
     float: left;
     
   }
-  /* Character's Detail */
+  /* Character's Detail styling */
   #characterDetails{
     margin-top:10px ;
     padding:0 5px;
@@ -48,12 +52,14 @@ aside{
     box-shadow:3px 3px 0 #222;
   }
 
-  #bookimage{
+  /* books image from api call styling */
+  #bimage{
       height: 500px;
       width: 500px;
       float: left;
   }
-
+ 
+  /* character image from api call styling */
   #characterimage{
     height: 350px;
     width: 600px;
@@ -61,6 +67,8 @@ aside{
     border: solid;
     padding: 10px;
   }
+
+  /* book image holder styling */
   #bookimage{
     height: 350px;
     width: 600px;
@@ -68,7 +76,7 @@ aside{
     float: left;
   }
 
-  /* Backgroun image appled with font  */
+  /* Background image and font styling for the body  */
 body{
     background-image: url("background/bg3.png");
     background-repeat: no-repeat;
@@ -77,14 +85,13 @@ body{
      font-family: 'Bangers', cursive;
      font-size: 25px;
 }
+
+/* <p> styling from api call for Character details */
 p{
     font-size: 12pt;
 }
-img{
-    height: 300px;
-    width: 500px;
-    object-fit: cover;
-}
+
+/* footer styling */
 
 footer {
     height: 60px;

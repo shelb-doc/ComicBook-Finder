@@ -1,3 +1,12 @@
+//"chris note" - please add the following ids for styling
+      // character image id ="image"
+      // element id where charcter image is held is id = "characterimage"
+      // comic book image id = "bimage"
+      // element id where comic book image is held is id = "bookimage"
+
+
+
+//===this will be remove by chris, just in here for testing API data call =================
 $(document).ready(function () {
     
 
@@ -17,16 +26,19 @@ $(document).ready(function () {
             //Variable need for the Character Details
             var description = response.results[0].biography
 
-            $('#characterimage').append("<img src=" +imageURL+"></img>")
+            $('#characterimage').append("<img id='image' src=" +imageURL+"></img>")
             $('#characterName').append("<h1>"+name+"</h1>")
             $('#characterDetails').append("<p>"+description+"</p>")
             $('#characterDetails').append("<p>"+appearance+"</p>")
+            $('#bookimage').append("<img src='background\inspo.png'></img>")
             
         });
       }
     superhero()
     })
-  
+
+//=========================================================================================
+    
   //VARIABLES
 
   //Number entered by user.
