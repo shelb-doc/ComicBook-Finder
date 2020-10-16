@@ -1,8 +1,14 @@
 $(document).ready(function () {
+  
+  //VARIABLES
+
   //Number entered by user.
   //4 is just a placeholder until we create the input and get the value.
   var userNumber = 4;
 
+
+  //FUNCTIONS
+  
   //Function to get the superhero from the superhero api by id
   //Must be between 1 and 731
   function getSuperHero(id) {
@@ -14,24 +20,26 @@ $(document).ready(function () {
       console.log(response);
       var name = response.name;
 
+      getBooks(name);
+
     });
   }
-  
 
-  function goodReads() {
-    var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=spiderman"
+  //Function to get books and comics related to the superhero from goodreads api
+  function getBooks(name) {
+    var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-        console.log(response)
+      console.log(response);
+      var books = response.results;
+
     });
   }
 
   // FUNCTION CALLS
-  goodReads()
   getSuperHero(userNumber);
 
   // EVENT LISTENERS
-
-})
+});
