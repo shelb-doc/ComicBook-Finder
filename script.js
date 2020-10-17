@@ -1,14 +1,10 @@
-//"chris note" - please add the following ids for styling
-// character image id ="image"
-// element id where character image is held is id = "characterimage"
-// comic book image id = "bimage"
-// element id where comic book image is held is id = "bookimage"
-
-//===this will be remove by chris, just in here for testing API data call =================
-
 $(document).ready(function () {
-  $("#myModal").modal();
+  //VARIABLES
 
+  //Number entered by user.
+  //4 is just a placeholder until we create the input and get the value.
+  var userNumber = Math.floor(Math.random() * 732);
+  
   // Modal variables
   var questions = [
     { question: "Marvel or DC", choices: ["Marvel", "DC"] },
@@ -18,7 +14,9 @@ $(document).ready(function () {
       choices: ["Suicide Squad", "The Avengers"],
     },
   ];
+  
   var qIndex = 0;
+
   //FUNCTIONS
   function populateModal(num) {
     if (num === 3) {
@@ -43,10 +41,62 @@ $(document).ready(function () {
       }
     }
   }
+
+ //Function to get the superhero from the superhero api by id
+ //Must be between 1 and 731
+ function getSuperHero(id) {
+  var queryURL = "https://superheroapi.com/api.php/10164273699360858/" + id;
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+      var name = response.name;
+      var heroImage = response.image.url;
+      $("#characterName").append("<h1>" + name + "</h1>");
+      $('#characterimage').append('<img id="image" src="' + heroImage + '"></img>');
+
+      var aliases = response.biography.aliases;
+      var aliasesText = "Aliases: ";
+
+      for(var i = 0; i < aliases.length; i++){
+          aliasesText += (i < aliases.length - 1) ? aliases[i] + ', ' : aliases[i];       
+      }
+
+      $('#characterDetails').append('<p>Full Name: ' + response.biography['full-name'] +  '</p>');
+      $('#characterDetails').append('<p>' + aliasesText + '</p>');
+      $('#characterDetails').append('<p>Place of Birth: ' + response.biography['place-of-birth'] + '</p>');
+      $('#characterDetails').append('<p>First Appearance: ' + response.biography['first-appearance'] + '</p>');
+      $('#characterDetails').append('<p>Publisher: ' + response.biography.publisher + '</p>');
+     
+    getBooks(name);
+  });
+}
+
+//Function to get books and comics related to the superhero from goodreads api
+function getBooks(name) {
+  var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    var books = response.results;
+   
+   // for loop that will display Book images from Goodread API Call, images are place in the carousel
+    for (var i=0; i< books.length; i++){
+      var bookImage = books[i].image_url
+      console.log(bookImage)
+    $(".carousel-inner").append("<div class='carousel-item '><img class='d-block w-100' src="+ bookImage +" alt='book slide'></div>");
+    }
+  });
+}
+  
+// FUNCTION CALLS
+  $('.carousel').carousel()
   populateModal(qIndex);
   $("#myModal").modal();
+
   // EVENT LISTENERS
-  $(document).on("click", ".choice", function () {
+   $(document).on("click", ".choice", function () {
     qIndex++;
     populateModal(qIndex);
   });
@@ -55,74 +105,4 @@ $(document).ready(function () {
     getSuperHero(userNumber);
   });
 
-  function superhero() {
-    var queryURL =
-      "https://superheroapi.com/api.php/10164273699360858/search/batman";
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      console.log(response.results[0].image.url);
-      console.log(response.results[0].biography);
-      var image = document.getElementById("characterImage");
-      var imageURL = response.results[0].image.url;
-      var name = response.results[0].name;
-
-      //Variable need for the Character Details
-      var description = response.results[0].biography;
-
-      $("#characterImage").append(
-        "<img id='image' src=" + imageURL + "></img>"
-      );
-      $("#characterName").append("<h1>" + name + "</h1>");
-      $("#characterDetails").append("<p>" + description + "</p>");
-      $("#characterDetails").append("<p>" + appearance + "</p>");
-      $("#bookimage").append("<img src='backgroundinspo.png'></img>");
-    });
-  }
-  superhero();
 });
-
-//=========================================================================================
-
-//VARIABLES
-
-//Number entered by user.
-//4 is just a placeholder until we create the input and get the value.
-var userNumber = 4;
-
-//FUNCTIONS
-
-//Function to get the superhero from the superhero api by id
-//Must be between 1 and 731
-function getSuperHero(id) {
-  var queryURL = "https://superheroapi.com/api.php/10164273699360858/" + id;
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    var name = response.name;
-
-    getBooks(name);
-  });
-}
-
-//Function to get books and comics related to the superhero from goodreads api
-function getBooks(name) {
-  var queryURL =
-    "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    var books = response.results;
-  });
-}
-
-// FUNCTION CALLS
-getSuperHero(userNumber);
-
-// EVENT LISTENERS
