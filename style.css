@@ -50,36 +50,40 @@ aside{
     background:white;
     border:1px solid #222;
     box-shadow:3px 3px 0 #222;
+    float: left;
   }
 
-  /* books image from api call styling */
-  #bimage{
-      height: 500px;
+   /* book image holder styling */
+  #bookimage{
+      height: 350px;
       width: 500px;
+      border: solid #222;
+      box-shadow:3px 3px 0 #222;
       float: left;
   }
  
-  /* character image from api call styling */
+  /* character image holder styling */
   #characterimage{
     height: 350px;
-    width: 500px;
-    float: right;
+    width: 400px;
     border: solid;
-    padding: 10px;
   }
-  /* api called image styling */
+
+  /* character image from api call styling */
   #image{
     height: 300px;
     width: 500px;
-    object-fit: cover;
-    }
+    margin-top: 30px;
+    object-fit: contain;
 
-  /* book image holder styling */
-  #bookimage{
-    height: 350px;
-    width: 600px;
-    border: solid;
-    float: left;
+  }
+  /* books image from api call styling */
+  .carousel-item{
+    margin-top: 35px;
+    margin-left: 20px;
+    height: 80%;
+    width: 80%;
+    object-fit: fill;
   }
 
   /* Background image and font styling for the body  */
@@ -87,11 +91,15 @@ body{
     background-image: url("background/bg3.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
-     background-size: cover;
-     font-family: 'Bangers', cursive;
-     font-size: 25px;
+    background-size: cover;
+    font-family: 'Bangers', cursive;
+    font-size: 25px;
 }
-
+/* character details holder styling */
+#characterDetails{
+  width: 800px;
+  height: auto;
+}
 /* <p> styling from api call for Character details */
 p{
     font-size: 12pt;

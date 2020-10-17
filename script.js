@@ -4,13 +4,17 @@
 // comic book image id = "bimage"
 // element id where comic book image is held is id = "bookimage"
 
-//===this will be remove by chris, just in here for testing API data call =================
 
 $(document).ready(function () {
+  $('.carousel').carousel()
   $("#myModal").modal();
+
+  
+  //===this will be remove by chris, just in here for testing API data call =================
   function superhero() {
+    var cName = "Batman"
     var queryURL =
-      "https://superheroapi.com/api.php/10164273699360858/search/batman";
+      "https://superheroapi.com/api.php/10164273699360858/search/"+cName;
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -50,31 +54,38 @@ var userNumber = 4;
 //Function to get the superhero from the superhero api by id
 //Must be between 1 and 731
 function getSuperHero(id) {
-  var queryURL = "https://superheroapi.com/api.php/10164273699360858/" + id;
+  var queryURL = "https://superheroapi.com/api.php/10164273699360858/?q=" + id;
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
     console.log(response);
     var name = response.name;
-
+     
     getBooks(name);
   });
 }
 
 //Function to get books and comics related to the superhero from goodreads api
 function getBooks(name) {
-  var queryURL =
-    "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
+  var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
     console.log(response);
     var books = response.results;
+    console.log(books)
+    console.log(books.image_url)
+   
+   // for loop that will display Book images from Goodread API Call, images are place in the carousel
+    for (var i=0; i< books.length; i++){
+      var bookImage = books[i].image_url
+      console.log(bookImage)
+    $(".carousel-inner").append("<div class='carousel-item '><img class='d-block w-100' src="+ bookImage +" alt='book slide'></div>");
+    }
   });
 }
-
 // FUNCTION CALLS
 getSuperHero(userNumber);
 
