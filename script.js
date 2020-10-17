@@ -1,6 +1,6 @@
 //"chris note" - please add the following ids for styling
 // character image id ="image"
-// element id where charcter image is held is id = "characterimage"
+// element id where character image is held is id = "characterimage"
 // comic book image id = "bimage"
 // element id where comic book image is held is id = "bookimage"
 
@@ -9,28 +9,51 @@
 $(document).ready(function () {
   $("#myModal").modal();
 
-  var quizContainer = document.getElementById("quiz");
-  var questionContainer = document.getElementById("question-container");
-  var answerContainer = document.getElementById("answer-container");
-
-  var questionArray = [
+  // Modal variables
+  var questions = [
+    { question: "Marvel or DC", choices: ["Marvel", "DC"] },
+    { question: "Superman or Batman", choices: ["Superman", "Batman"] },
     {
-      question: "Avengers 1 or Avengers 2?",
-
-      choices: ["A", "B"],
-    },
-    {
-      question: "Dead pool or Spider Man?",
-
-      choices: ["A", "B"],
-    },
-
-    {
-      question: "Joker or Batman?",
-
-      choices: ["A", "B"],
+      question: "Suicide Squad or The Avengers",
+      choices: ["Suicide Squad", "The Avengers"],
     },
   ];
+  var qIndex = 0;
+  //FUNCTIONS
+  function populateModal(num) {
+    if (num === 3) {
+      $(".modal-footer").empty();
+      $(".modal-body").empty();
+      $(".modal-body").append("<p>Enter a number between 1 and 731</p>");
+      $(".modal-body").append(
+        '<input type="numeric" id="userNumber" class="form-control">'
+      );
+      $(".modal-body").append(
+        '<button id="goBtn" class="btn" data-dismiss="modal">Go</button>'
+      );
+    } else {
+      $("#question").text(questions[num].question);
+      $(".modal-footer").empty();
+      for (var i = 0; i < questions[num].choices.length; i++) {
+        $(".modal-footer").append(
+          '<button class="btn choice">' +
+            questions[num].choices[i] +
+            "</button>"
+        );
+      }
+    }
+  }
+  populateModal(qIndex);
+  $("#myModal").modal();
+  // EVENT LISTENERS
+  $(document).on("click", ".choice", function () {
+    qIndex++;
+    populateModal(qIndex);
+  });
+  $(document).on("click", "#goBtn", function () {
+    userNumber = $("#userNumber").val();
+    getSuperHero(userNumber);
+  });
 
   function superhero() {
     var queryURL =
@@ -42,14 +65,14 @@ $(document).ready(function () {
       console.log(response);
       console.log(response.results[0].image.url);
       console.log(response.results[0].biography);
-      var image = document.getElementById("characterimage");
+      var image = document.getElementById("characterImage");
       var imageURL = response.results[0].image.url;
       var name = response.results[0].name;
 
       //Variable need for the Character Details
       var description = response.results[0].biography;
 
-      $("#characterimage").append(
+      $("#characterImage").append(
         "<img id='image' src=" + imageURL + "></img>"
       );
       $("#characterName").append("<h1>" + name + "</h1>");
