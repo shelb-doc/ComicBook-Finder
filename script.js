@@ -4,8 +4,43 @@ $(document).ready(function () {
   //Number entered by user.
   //4 is just a placeholder until we create the input and get the value.
   var userNumber = Math.floor(Math.random() * 732);
+  
+  // Modal variables
+  var questions = [
+    { question: "Marvel or DC", choices: ["Marvel", "DC"] },
+    { question: "Superman or Batman", choices: ["Superman", "Batman"] },
+    {
+      question: "Suicide Squad or The Avengers",
+      choices: ["Suicide Squad", "The Avengers"],
+    },
+  ];
+  
+  var qIndex = 0;
 
   //FUNCTIONS
+  function populateModal(num) {
+    if (num === 3) {
+      $(".modal-footer").empty();
+      $(".modal-body").empty();
+      $(".modal-body").append("<p>Enter a number between 1 and 731</p>");
+      $(".modal-body").append(
+        '<input type="numeric" id="userNumber" class="form-control">'
+      );
+      $(".modal-body").append(
+        '<button id="goBtn" class="btn" data-dismiss="modal">Go</button>'
+      );
+    } else {
+      $("#question").text(questions[num].question);
+      $(".modal-footer").empty();
+      for (var i = 0; i < questions[num].choices.length; i++) {
+        $(".modal-footer").append(
+          '<button class="btn choice">' +
+            questions[num].choices[i] +
+            "</button>"
+        );
+      }
+    }
+  }
 
  //Function to get the superhero from the superhero api by id
  //Must be between 1 and 731
@@ -57,8 +92,17 @@ function getBooks(name) {
   
 // FUNCTION CALLS
   $('.carousel').carousel()
+  populateModal(qIndex);
   $("#myModal").modal();
-  getSuperHero(userNumber);
 
   // EVENT LISTENERS
+   $(document).on("click", ".choice", function () {
+    qIndex++;
+    populateModal(qIndex);
+  });
+  $(document).on("click", "#goBtn", function () {
+    userNumber = $("#userNumber").val();
+    getSuperHero(userNumber);
+  });
+
 });
