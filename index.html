@@ -2,7 +2,7 @@
 
 <html lang="en">
 
-<head onload="superhero()">
+<head onload="getSuperHero(id)",>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>SuperHero</title>
@@ -45,9 +45,25 @@
           <h1 id= "characterName"></h1>
         </div>
         <div class="row">
-          <div id= "bookimage" class= "col-sm-4">Comic Book Image</div>
-          <div id= "characterimage" class= "col-sm-8"></div>
+          <div id= "bookimage" class= "col-sm-4">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1526933839l/40188904._SX98_.jpg" alt="First slide">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
         </div>
+          <div id= "characterimage" class= "col-sm-8"></div>
+      
         <div class="row">
           <div class= "col-sm-12"><div id= "characterDetails">Biography</div></div>
         </div>
