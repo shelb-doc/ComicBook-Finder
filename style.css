@@ -26,23 +26,12 @@
     transform: rotate(2deg);
     margin:15px;
     padding:0 5px;
-    float:left;
+    float: left;
     background:#ddd;
     border:1px solid #222;
     box-shadow:3px 3px 0 #222;
 }
 
-/* Site Header Styling */
-aside{
-    margin:25px;
-    width:250px;
-    height:600px;
-    background:#fff;
-    border: solid black;
-    border-color: black;
-    float: left;
-    
-  }
   /* Character's Detail styling */
   #characterDetails{
     margin-top:10px ;
@@ -55,37 +44,51 @@ aside{
 
    /* book image holder styling */
   #bookimage{
-      height: 350px;
-      width: 500px;
+      height: 500px;
+      width: 300px;
       border: solid #222;
       box-shadow:3px 3px 0 #222;
-      float: left;
+      object-fit: contain;
+      
   }
- 
+ .d-block{
+   margin-top: 25px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
   /* character image holder styling */
   #characterimage{
-    height: 350px;
+    height: 500px;
     width: 400px;
     border: solid;
   }
 
   /* character image from api call styling */
   #image{
-    height: 300px;
+    height: 450px;
     width: 500px;
-    margin-top: 30px;
+    margin-top: 25px;
     object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
   }
   /* books image from api call styling */
-  .carousel-item{
-    margin-top: 35px;
-    margin-left: 20px;
-    height: 80%;
-    width: 80%;
-    object-fit: fill;
-  }
 
+
+
+  /* site header styling */
+  #logo{
+    float: left;
+    height: 200px;
+    width: auto;
+    margin-right: 20px;
+    margin-top: 20px;
+  
+  }
   /* Background image and font styling for the body  */
 body{
     background-image: url("background/bg3.png");
@@ -97,7 +100,7 @@ body{
 }
 /* character details holder styling */
 #characterDetails{
-  width: 800px;
+  width: auto;
   height: auto;
 }
 /* <p> styling from api call for Character details */
@@ -112,4 +115,202 @@ footer {
     line-height: 60px;
     background-color: #ff000057;
     font-family: 'Bangers', cursive;
+}
+/* #myModal{
+  position: absolute ;
+} */
+
+/* @media only screen and (max-width: 900px) {
+  /* For mobile phones: */
+
+/* #siteheader{
+   width: 30%;
+  font-size: 8pt;
+
+}
+
+#myModal{
+  width: 30%;
+  font-size: 8pt;
+}
+
+/* body{
+  height: auto;
+  width: auto;
+} */
+/* } */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  #myModal{
+    color: green;
+    width: 100%;
+
+  }
+
+  #logo{
+   width: 20%;
+   height: 20%;
+ 
+ }
+
+ #characterName{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  border-color: grey;
+  color: white;
+  transform: rotate(2deg);
+  margin:15px;
+  padding:0 5px;
+  background:#ddd;
+  border:1px solid #222;
+  box-shadow:3px 3px 0 #222;
+  transform: rotate(2deg);
+  margin:15px;
+  padding:0 5px;
+  background:#ddd;
+  border:1px solid #222;
+  box-shadow:3px 3px 0 #222;
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+  #myModal{
+    color: red;
+    width: 100%;
+  }
+
+/*  
+  #characterName{
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   border-radius: 10px;
+   border-color: grey;
+   color: white;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+ } */
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  #myModal{
+    color: pink;
+    width: 100%;
+  }
+  
+ 
+  #characterName{
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   border-radius: 10px;
+   border-color: grey;
+   color: white;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+ }
+
+ #characterDetails{
+ width: 100px;
+}
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  #myModal{
+    color: gray;
+    width: 100%;
+  }
+  #siteheader{
+    width: 100%;
+    height: 100%;
+  
+  }
+ 
+  #characterName{
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   border-radius: 10px;
+   border-color: grey;
+   color: white;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+
+ }
+
+}
+  
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  #myModal{
+    color: yellow;
+    width: 100%;
+  }
+  #siteheader{
+    width: 100%;
+    height: 100%;
+  
+  }
+ 
+  #characterName{
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   border-radius: 10px;
+   border-color: grey;
+   color: white;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+   transform: rotate(2deg);
+   margin:15px;
+   padding:0 5px;
+   background:#ddd;
+   border:1px solid #222;
+   box-shadow:3px 3px 0 #222;
+ }
+
 }

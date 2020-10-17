@@ -82,7 +82,7 @@ function getBooks(name) {
     for (var i=0; i< books.length; i++){
       var bookImage = books[i].image_url
       console.log(bookImage)
-    $(".carousel-inner").append("<div class='carousel-item '><img class='d-block w-100' src="+ bookImage +" alt='book slide'></div>");
+    $(".carousel-inner").append("<div class='carousel-item '><img id= 'bimage' class='d-block w-100' src="+ bookImage +" alt='book slide'></div>");
     }
   });
 }
