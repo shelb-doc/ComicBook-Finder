@@ -93,13 +93,15 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       var books = response.results;
-
+      var active = "";
       // for loop that will display Book images from Goodread API Call, images are place in the carousel
       for (var i = 0; i < books.length; i++) {
+
+        active = i === 0 ? " active" : "";
+
         var bookImage = books[i].image_url;
-        console.log(bookImage);
         $(".carousel-inner").append(
-          "<div class='carousel-item '><img class='d-block w-100' src=" +
+          "<div class='carousel-item" + active + "'><img class='d-block w-100' src=" +
             bookImage +
             " alt='book slide'></div>"
         );
