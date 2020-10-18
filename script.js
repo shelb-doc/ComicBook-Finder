@@ -119,31 +119,8 @@ $(document).ready(function () {
     qIndex++;
     populateModal(qIndex);
   });
-<<<<<<< HEAD
-}
-
-//Function to get books and comics related to the superhero from goodreads api
-function getBooks(name) {
-  var queryURL = "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    var books = response.results;
-    console.log(books)
-    console.log(books.image_url)
-   
-   // for loop that will display Book images from Goodread API Call, images are place in the carousel
-    for (var i=0; i< books.length; i++){
-      var bookImage = books[i].image_url
-      console.log(bookImage)
-    $(".carousel-inner").append("<div class='carousel-item '><img id= 'bimage' class='d-block w-100' src="+ bookImage +" alt='book slide'></div>");
-    }
-=======
   $(document).on("click", "#goBtn", function () {
     userNumber = $("#userNumber").val();
     getSuperHero(userNumber);
->>>>>>> 3dbb9ef88705cb2cb72a7fb2914a3bce06aa38ce
   });
 });

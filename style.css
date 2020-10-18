@@ -1,15 +1,14 @@
 /* Comic Font from Google Font */
 @import url(https://fonts.googleapis.com/css?family=Bangers);
 
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
 /* Top Margin */
 #nameRow {
   margin-top: 40px;
-}
-/* books image from api call styling */
-#bImage {
-  height: 500px;
-  width: 500px;
-  float: left;
 }
 
 /* Character Name Styling */
@@ -26,13 +25,9 @@
     background:#ddd;
     border:1px solid #222;
     box-shadow:3px 3px 0 #222;
-    transform: rotate(2deg);
-    margin:15px;
-    padding:0 5px;
-    float: left;
-    background:#ddd;
-    border:1px solid #222;
-    box-shadow:3px 3px 0 #222;
+    margin: 0 auto;
+    margin-top: 30px;
+    
 }
 
   /* Character's Detail styling */
@@ -42,21 +37,14 @@
     background:white;
     border:1px solid #222;
     box-shadow:3px 3px 0 #222;
-    float: left;
+    width: auto;
+    margin: 0 auto;
+    margin-top: 30px;
+    
   }
 
-   /* book image holder styling */
-  #bookimage{
-      height: 500px;
-      width: 300px;
-      border: solid #222;
-      box-shadow:3px 3px 0 #222;
-      object-fit: contain;
-      
-  }
  .d-block{
    margin-top: 25px;
-   display: block;
    margin-left: auto;
    margin-right: auto;
  }
@@ -66,24 +54,10 @@
     height: 500px;
     width: 400px;
     border: solid;
-  }
-
-  /* character image from api call styling */
-  #image{
-    height: 450px;
-    width: 500px;
-    margin-top: 25px;
-    object-fit: contain;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 
   }
-  /* books image from api call styling */
 
-
-
-  /* site header styling */
+   /* site header styling */
   #logo{
     float: left;
     height: 200px;
@@ -97,45 +71,12 @@ body{
     background-image: url("background/bg3.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: center center;
     background-size: cover;
     font-family: 'Bangers', cursive;
     font-size: 25px;
 }
 /* character details holder styling */
-#characterDetails{
-  width: auto;
-}
-  #characterName {
-  height: 70px;
-  width: 500px;
-  text-align: center;
-  border-radius: 10px;
-  border-color: grey;
-  color: white;
-  transform: rotate(2deg);
-  margin: 15px;
-  padding: 0 5px;
-  background: #ddd;
-  border: 1px solid #222;
-  box-shadow: 3px 3px 0 #222;
-  transform: rotate(2deg);
-  margin: 15px;
-  padding: 0 5px;
-  float: left;
-  background: #ddd;
-  border: 1px solid #222;
-  box-shadow: 3px 3px 0 #222;
-}
-
-aside {
-  margin: 25px;
-  width: 250px;
-  height: 600px;
-  background: #fff;
-  border: solid black;
-  border-color: black;
-  float: left;
-}
 
 #myModal {
   font-style: italic;
@@ -143,47 +84,19 @@ aside {
   font-weight: 800;
 }
 
-/* Character's Detail styling */
-#characterDetails {
-  margin-top: 10px;
-  padding: 0 5px;
-  background: white;
-  border: 1px solid #222;
-  box-shadow: 3px 3px 0 #222;
-  float: left;
-}
-
-/* book image holder styling */
-#bookImage {
-  height: 350px;
-  width: 500px;
-  border: solid #222;
-  box-shadow: 3px 3px 0 #222;
-  float: left;
-}
-
-/* character image holder styling */
-#characterImage {
-  height: 350px;
-  width: 400px;
-  border: solid;
-}
 
 /* character image from api call styling */
 #image {
-  height: 300px;
+  height: 400px;
   width: 500px;
   margin-top: 30px;
   object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
-/* books image from api call styling */
-.carousel-item {
-  margin-top: 35px;
-  margin-left: 20px;
-  height: 80%;
-  width: 80%;
-  object-fit: fill;
-}
+
 
 /* Background image and font styling for the body  */
 body {
@@ -194,14 +107,15 @@ body {
   font-family: "Bangers", cursive;
   font-size: 25px;
 }
-/* character details holder styling */
-#characterDetails {
-  width: 800px;
-  height: auto;
-}
+
+
 /* <p> styling from api call for Character details */
 p {
   font-size: 12pt;
+}
+
+.m{
+  float: left;
 }
 
 /* footer styling */
@@ -211,202 +125,74 @@ footer {
   line-height: 60px;
   background-color: #ff000057;
   font-family: "Bangers", cursive;
-}
-/* #myModal{
-  position: absolute ;
-} */
-
-/* @media only screen and (max-width: 900px) {
-  /* For mobile phones: */
-
-/* #siteheader{
-   width: 30%;
-  font-size: 8pt;
-
+  margin-top: 50px;
 }
 
-#myModal{
-  width: 30%;
-  font-size: 8pt;
-}
 
-/* body{
-  height: auto;
-  width: auto;
-} */
-/* } */
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 767.98px) { 
   #myModal{
-    color: green;
-    width: 100%;
+ 
+    width: 70%;
+    position: absolute;
 
   }
-
   #logo{
    width: 20%;
    height: 20%;
  
  }
 
- #characterName{
+#characterDetails{
+  width: 100%;
+}
+
+
+
+/* character image holder styling */
+#characterImage {
   height: 100%;
   width: 100%;
-  text-align: center;
-  border-radius: 10px;
-  border-color: grey;
-  color: white;
-  transform: rotate(2deg);
-  margin:15px;
-  padding:0 5px;
-  background:#ddd;
-  border:1px solid #222;
-  box-shadow:3px 3px 0 #222;
-  transform: rotate(2deg);
-  margin:15px;
-  padding:0 5px;
-  background:#ddd;
-  border:1px solid #222;
-  box-shadow:3px 3px 0 #222;
+  float: right;  
+}
+
+#image {
+  height: auto;
+  width: 100%;
+  float: left;
 }
 
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
- @media only screen and (min-width: 600px) {
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
   #myModal{
-    color: red;
-    width: 100%;
+    width: 70%;
+    position: absolute;
+
   }
 
-/*  
-  #characterName{
-   height: 100%;
-   width: 100%;
-   text-align: center;
-   border-radius: 10px;
-   border-color: grey;
-   color: white;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
- } */
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  #myModal{
+    width: 70%;
+    position: absolute;
+
+  }
+
 
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
   #myModal{
-    color: pink;
-    width: 100%;
+    width: 70%;
+    position: absolute;
+
   }
   
- 
-  #characterName{
-   height: 100%;
-   width: 100%;
-   text-align: center;
-   border-radius: 10px;
-   border-color: grey;
-   color: white;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
- }
-
- #characterDetails{
- width: 100px;
-}
-
-} 
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  #myModal{
-    color: gray;
-    width: 100%;
-  }
-  #siteheader{
-    width: 100%;
-    height: 100%;
-  
-  }
- 
-  #characterName{
-   height: 100%;
-   width: 100%;
-   text-align: center;
-   border-radius: 10px;
-   border-color: grey;
-   color: white;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
-
- }
-
-}
-  
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  #myModal{
-    color: yellow;
-    width: 100%;
-  }
-  #siteheader{
-    width: 100%;
-    height: 100%;
-  
-  }
- 
-  #characterName{
-   height: 100%;
-   width: 100%;
-   text-align: center;
-   border-radius: 10px;
-   border-color: grey;
-   color: white;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
-   transform: rotate(2deg);
-   margin:15px;
-   padding:0 5px;
-   background:#ddd;
-   border:1px solid #222;
-   box-shadow:3px 3px 0 #222;
- }
-
 }
