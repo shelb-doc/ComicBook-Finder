@@ -118,7 +118,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
 
-      //Get the character from the searh results
+      //Get the character from the search results
       var character = response.results.find((x) => names.includes(normalizeName(nullCheck(x.real_name))) ||
           names.includes(normalizeName(nullCheck(x.name))));
 
@@ -197,6 +197,8 @@ $(document).ready(function () {
   $("#myModal").modal();
 
   // EVENT LISTENERS
+  
+  // listens for button clicks
   $(document).on("click", ".choice", function () {
     qIndex++;
     populateModal(qIndex);

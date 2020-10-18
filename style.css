@@ -44,11 +44,11 @@
     
   }
 
- .d-block{
-   margin-top: 25px;
-   margin-left: auto;
-   margin-right: auto;
- }
+.d-block{
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
   /* character image holder styling */
   #characterimage{
@@ -130,19 +130,17 @@ footer {
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 767.98px) { 
   #myModal{
- 
     width: 70%;
     position: absolute;
 
   }
   #logo{
-   width: 20%;
-   height: 20%;
- 
+  width: 20%;
+  height: 20%;
   }
 
   #characterDetails{
-   width: 100%;
+  width: 100%;
   }
 
   /* character image holder styling */
