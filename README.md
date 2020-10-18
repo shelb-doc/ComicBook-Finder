@@ -1,4 +1,4 @@
-# project-1
+# ComicBook Finder
 
 
 ## Description 
@@ -22,7 +22,7 @@ To implement changes:
 
 ![Alt Text]()
 
-To view this site live [click here.]()
+To view this site live [click here.](https://shelb-doc.github.io/ComicBook-Finder/)
 
 To view this locally, clone the repository, and open [index.html](index.html) with your browser of choice.
 
