@@ -75,6 +75,15 @@ body{
     background-size: cover;
     font-family: 'Bangers', cursive;
     font-size: 25px;
+
+aside {
+  margin: 25px;
+  width: 250px;
+  height: 600px;
+  background: #fff;
+  border: solid black;
+  border-color: black;
+  float: left;
 }
 /* character details holder styling */
 
@@ -84,6 +93,15 @@ body{
   font-weight: 800;
 }
 
+/* book image holder styling */
+#bookImage {
+  height: 350px;
+  width: 500px;
+  background: rgb(224, 221, 221, 0.75);
+  border: solid #222;
+  box-shadow: 3px 3px 0 #222;
+  float: left;
+}
 
 /* character image from api call styling */
 #image {
@@ -96,18 +114,6 @@ body{
   margin-right: auto;
   
 }
-
-
-/* Background image and font styling for the body  */
-body {
-  background-image: url("background/bg3.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  font-family: "Bangers", cursive;
-  font-size: 25px;
-}
-
 
 /* <p> styling from api call for Character details */
 p {
@@ -128,9 +134,6 @@ footer {
   margin-top: 50px;
 }
 
-
-
-
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 767.98px) { 
   #myModal{
@@ -143,27 +146,24 @@ footer {
    width: 20%;
    height: 20%;
  
- }
+  }
 
-#characterDetails{
-  width: 100%;
-}
+  #characterDetails{
+   width: 100%;
+  }
 
+  /* character image holder styling */
+  #characterImage {
+    height: 100%;
+    width: 100%;
+    float: right;  
+  } 
 
-
-/* character image holder styling */
-#characterImage {
-  height: 100%;
-  width: 100%;
-  float: right;  
-}
-
-#image {
-  height: auto;
-  width: 100%;
-  float: left;
-}
-
+  #image {
+    height: auto;
+    width: 100%;
+    float: left;
+  }
 }
 
 /* // Medium devices (tablets, 768px and up) */
@@ -171,9 +171,7 @@ footer {
   #myModal{
     width: 70%;
     position: absolute;
-
   }
-
 }
 
 /* // Large devices (desktops, 992px and up) */
@@ -181,10 +179,7 @@ footer {
   #myModal{
     width: 70%;
     position: absolute;
-
   }
-
-
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
@@ -192,7 +187,5 @@ footer {
   #myModal{
     width: 70%;
     position: absolute;
-
   }
-  
 }
