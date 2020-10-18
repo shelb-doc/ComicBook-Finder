@@ -5,6 +5,8 @@ $(document).ready(function () {
   //4 is just a placeholder until we create the input and get the value.
   var userNumber = Math.floor(Math.random() * 732);
 
+  const comicVineToken = "8d92360fbb7a0ea6865f81ff20b7b95c10523143";
+  const comicVineRoot = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/";
   // Modal variables
   var questions = [
     { question: "Marvel or DC", choices: ["Marvel", "DC"] },
@@ -50,8 +52,23 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
       var name = response.name;
+      var fullName = response.biography["full-name"];
+      var publisher = response.biography.publisher;
+
+      //Format the name and fullname to be used in comicvine api
+      name = name.replace(/\sI+/g, "").replace(/(.+?)\s(.+?)\s(.+?)/, "$1 $3");
+      fullName = fullName.replace(/(.+?)\s(.+?)\s(.+?)/, "$1 $3");
+      console.log(fullName);
+
+      //Array of names to use in search for superhero in comicvine api
+      var names = [];
+      names.push(name);
+      names.push(fullName);
+
       var heroImage = response.image.url;
+
       $("#characterName").append("<h1>" + name + "</h1>");
       $("#characterImage").append(
         '<img id="image" src="' + heroImage + '"></img>'
@@ -62,6 +79,7 @@ $(document).ready(function () {
 
       for (var i = 0; i < aliases.length; i++) {
         aliasesText += i < aliases.length - 1 ? aliases[i] + ", " : aliases[i];
+        names.push(aliases[i]);
       }
 
       $("#characterDetails").append(
@@ -80,33 +98,97 @@ $(document).ready(function () {
         "<p>Publisher: " + response.biography.publisher + "</p>"
       );
 
-      getBooks(name);
+      getComics(names);
     });
   }
 
   //Function to get books and comics related to the superhero from goodreads api
-  function getBooks(name) {
-    var queryURL =
-      "https://v1.nocodeapi.com/shelboc/gr/dIBrccmAYkfwiAFv/search?q=" + name;
+  function getComics(names) {
+    //Remove punctuation and make names lower case to use in search
+    names = names.map((name) => normalizeName(name)).filter((x) => x);
+    console.log(names);
+
+    //Get the result from the comicvine api search endpoint to get characterid
+    var queryURL = comicVineRoot + "search/?api_key=" + comicVineToken + "&query=" + names.toString() +
+      "&resources=character&resource_type=character&format=json&limit=100";
+
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      var books = response.results;
-      var active = "";
-      // for loop that will display Book images from Goodread API Call, images are place in the carousel
-      for (var i = 0; i < books.length; i++) {
+      console.log(response);
 
-        active = i === 0 ? " active" : "";
+      //Get the character from the searh results
+      var character = response.results.find((x) => names.includes(normalizeName(nullCheck(x.real_name))) ||
+          names.includes(normalizeName(nullCheck(x.name))));
 
-        var bookImage = books[i].image_url;
-        $(".carousel-inner").append(
-          "<div class='carousel-item" + active + "'><img class='d-block w-100' src=" +
-            bookImage +
-            " alt='book slide'></div>"
-        );
-      }
+      console.log(character);
+
+      //Get the character details, specifically the issue credits that the character appeared in
+      $.ajax({
+        url: comicVineRoot + "character/4005-" + character.id + "/?api_key=" + comicVineToken + "&format=json",
+        method: "GET",
+      }).then(function (r) {
+        console.log(r);
+        var comics = r.results.issue_credits.slice(0, 10);
+
+        for (var i = 0; i < comics.length; i++) {
+          getComicDetails(comics[i].id, i);
+        }
+      });
     });
+  }
+
+  //Get the image url for the comics and set up the carousel
+  function getComicDetails(id, index) {
+    $.ajax({
+      url: comicVineRoot + "/issue/4000-" + id + "/?api_key=" + comicVineToken + "&format=json",
+      method: "GET",
+    }).then(function (r) {
+      console.log(r);
+
+      var active = index === 0 ? " active" : "";
+
+      var comicImage = r.results.image.original_url;
+      $(".carousel-inner").append(
+        "<div class='carousel-item" +
+          active +
+          "'><img class='d-block w-100' src=" +
+          comicImage +
+          " alt='book slide'></div>"
+      );
+    });
+  }
+
+  function removePunctuation(word) {
+    var result = "";
+    var characters = "abcdefghijklmnopqrstuvwxyz1234567890 ";
+
+    for (var i = 0; i < word.length; i++) {
+      if (characters.includes(word[i].toLowerCase() || word[i] == " ")) {
+        result += word[i];
+      }
+    }
+
+    return result;
+  }
+
+  function nullCheck(item) {
+    if (item == undefined || item == null) {
+      return "";
+    }
+
+    return item;
+  }
+
+  function normalizeName(name) {
+    var result = "";
+
+    if (name) {
+      result = removePunctuation(name.toLowerCase());
+    }
+
+    return result;
   }
 
   // FUNCTION CALLS
