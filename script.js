@@ -22,12 +22,12 @@ $(document).ready(function () {
     if (num === 3) {
       $(".modal-footer").empty();
       $(".modal-body").empty();
-      $(".modal-body").append("<p>Enter a number between 1 and 731</p>");
+      $(".modal-body").append('<p id="numQuestion" >Enter a number between 1 and 731</p>');
       $(".modal-body").append(
-        '<input type="numeric" id="userNumber" class="form-control">'
+        '<input type="numeric" id="userNumber" class="form-control" required >'
       );
-      $(".modal-body").append(
-        '<button id="goBtn" class="btn" data-dismiss="modal">Go</button>'
+      $(".modal-footer").append(
+        '<button id="goBtn" class="btn" >Go</button>'
       );
     } else {
       $("#question").text(questions[num].question);
@@ -120,7 +120,14 @@ $(document).ready(function () {
     populateModal(qIndex);
   });
   $(document).on("click", "#goBtn", function () {
+    event.preventDefault();
     userNumber = $("#userNumber").val();
-    getSuperHero(userNumber);
+    console.log(userNumber)
+    if((userNumber <= 0) || (userNumber > 731) || (isNaN(userNumber)) ){
+      $("#numQuestion").text("'"+ userNumber + "' is not a valid answer. Please enter a number between 1 and 731.");
+    } else{
+      $('#myModal').modal('hide');
+      getSuperHero(userNumber);
+    }
   });
 });

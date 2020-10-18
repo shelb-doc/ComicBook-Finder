@@ -19,18 +19,11 @@
   text-align: center;
   border-radius: 10px;
   border-color: grey;
-  color: white;
+  color: rgb(0, 0, 0);
   transform: rotate(2deg);
   margin: 15px;
   padding: 0 5px;
-  background: #ddd;
-  border: 1px solid #222;
-  box-shadow: 3px 3px 0 #222;
-  transform: rotate(2deg);
-  margin: 15px;
-  padding: 0 5px;
-  float: left;
-  background: #ddd;
+  background: rgb(224, 221, 221, 0.75);
   border: 1px solid #222;
   box-shadow: 3px 3px 0 #222;
 }
@@ -55,7 +48,7 @@ aside {
 #characterDetails {
   margin-top: 10px;
   padding: 0 5px;
-  background: white;
+  background: rgb(224, 221, 221, 0.75);
   border: 1px solid #222;
   box-shadow: 3px 3px 0 #222;
   float: left;
@@ -65,6 +58,7 @@ aside {
 #bookImage {
   height: 350px;
   width: 500px;
+  background: rgb(224, 221, 221, 0.75);
   border: solid #222;
   box-shadow: 3px 3px 0 #222;
   float: left;
@@ -74,7 +68,11 @@ aside {
 #characterImage {
   height: 350px;
   width: 400px;
+
   border: solid;
+  background: rgb(224, 221, 221, 0.75);
+  border: solid #222;
+  box-shadow: 3px 3px 0 #222;
 }
 
 /* character image from api call styling */
