@@ -40,6 +40,7 @@
     width: auto;
     margin: 0 auto;
     margin-top: 30px;
+    display: block;
     
   }
 
@@ -75,7 +76,7 @@ body{
     background-size: cover;
     font-family: 'Bangers', cursive;
     font-size: 25px;
-
+}
 aside {
   margin: 25px;
   width: 250px;
@@ -93,15 +94,7 @@ aside {
   font-weight: 800;
 }
 
-/* book image holder styling */
-#bookImage {
-  height: 350px;
-  width: 500px;
-  background: rgb(224, 221, 221, 0.75);
-  border: solid #222;
-  box-shadow: 3px 3px 0 #222;
-  float: left;
-}
+
 
 /* character image from api call styling */
 #image {
