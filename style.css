@@ -94,6 +94,22 @@ aside {
   font-weight: 800;
 }
 
+#myModal p{
+  font-size: 2rem;
+}
+
+#myModal button{
+  border: 1px solid black;
+  border-radius: 5px;
+  background: red;
+  color: white;
+  box-shadow: 2px 2px black;
+}
+
+#myModal button:active{
+  box-shadow: 2px 2px black inset;
+}
+
 
 
 /* character image from api call styling */
