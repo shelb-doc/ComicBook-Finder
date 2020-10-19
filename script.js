@@ -140,12 +140,13 @@ $(document).ready(function () {
       url: comicvineRoot + "/issue/4000-" + id + "/?api_key=" + comicvineToken + "&format=json",
       method: "GET",
     }).then(function (r) {
+      console.log(r);
       var active = index === 0 ? " active" : "";
       var comicImage = r.results.image.super_url;
 
       $(".carousel-inner").append(
-        "<div class='carousel-item" + active + "'><img class='d-block w-100' src=" +
-          comicImage + " alt='book slide'></div>");
+        "<div class='carousel-item" + active + "'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100' src=" +
+          comicImage + " alt='book slide'></a></div>");
     });
   }
 
@@ -201,6 +202,7 @@ $(document).ready(function () {
   }
 
   // FUNCTION CALLS
+  $('.container').hide();
   $(".carousel").carousel();
   populateModal(qIndex);
   $("#myModal").modal();
@@ -216,7 +218,7 @@ $(document).ready(function () {
   $(document).on("click", "#goBtn", function () {
     event.preventDefault();
     userNumber = $("#userNumber").val();
-    console.log(userNumber);
+
     if (userNumber <= 0 || userNumber > 731 || isNaN(userNumber)) {
       $("#numQuestion").text(
         "'" +
@@ -225,6 +227,7 @@ $(document).ready(function () {
       );
     } else {
       $("#myModal").modal("hide");
+      $('.container').show();
       getSuperHero(userNumber);
     }
   });
