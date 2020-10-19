@@ -105,10 +105,15 @@ $(document).ready(function () {
 
       //Get the character from the search results
       var character = response.results.find((x) =>
-          (searchObject.publisher.includes(normalizeName(x.publisher.name)) && searchObject.name === normalizeName(x.name)) ||
+          (searchObject.publisher.includes(x.publisher ? normalizeName(x.publisher.name) : "") && searchObject.name === normalizeName(x.name)) ||
           searchObject.fullName === normalizeName(x.real_name) ||
           foundInAliases(x.aliases, searchObject.aliases)
       );
+
+      if(!character){
+        showErrorModal('No comics found for ' + searchObject.name);
+        return;
+      }
 
       //Get the character details, specifically the issue credits that the character appeared in
       $.ajax({
@@ -116,6 +121,11 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (r) {
         var comics = r.results.issue_credits.slice(0, 10);
+
+        if(comics.length === 0){
+          showErrorModal('No comics found for ' + searchObject.name);
+          return;
+        }
 
         for (var i = 0; i < comics.length; i++) {
           getComicDetails(comics[i].id, i);
@@ -174,6 +184,20 @@ $(document).ready(function () {
     }
 
     return result;
+  }
+
+  function showErrorModal(error){
+    var modalBody = $('.modal-body');
+    var modalFooter = $('.modal-footer')
+
+    modalBody.empty();
+    modalFooter.empty();
+
+    modalBody.append('<p>' + error + '<p>');
+    modalFooter.append('<button data-dismiss="modal" class="btn">OK</button>');
+
+    $('#myModal').modal();
+
   }
 
   // FUNCTION CALLS
