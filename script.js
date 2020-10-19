@@ -5,8 +5,10 @@ $(document).ready(function () {
   //4 is just a placeholder until we create the input and get the value.
   var userNumber = Math.floor(Math.random() * 732);
 
-  const comicVineToken = "8d92360fbb7a0ea6865f81ff20b7b95c10523143";
-  const comicVineRoot = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/";
+  //Constants for comicvine api
+  const comicvineToken = "8d92360fbb7a0ea6865f81ff20b7b95c10523143";
+  const comicvineRoot = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/";
+
   // Modal variables
   var questions = [
     { question: "Marvel or DC", choices: ["Marvel", "DC"] },
@@ -25,21 +27,14 @@ $(document).ready(function () {
       $(".modal-footer").empty();
       $(".modal-body").empty();
       $(".modal-body").append('<p id="numQuestion" >Enter a number between 1 and 731</p>');
-      $(".modal-body").append(
-        '<input type="numeric" id="userNumber" class="form-control" required >'
-      );
-      $(".modal-footer").append(
-        '<button id="goBtn" class="btn" >Go</button>'
-      );
+      $(".modal-body").append('<input type="numeric" id="userNumber" class="form-control" required >');
+      $(".modal-footer").append('<button id="goBtn" class="btn" >Go</button>');
     } else {
       $("#question").text(questions[num].question);
       $(".modal-footer").empty();
+
       for (var i = 0; i < questions[num].choices.length; i++) {
-        $(".modal-footer").append(
-          '<button class="btn choice">' +
-            questions[num].choices[i] +
-            "</button>"
-        );
+        $(".modal-footer").append('<button class="btn choice">' + questions[num].choices[i] + "</button>");
       }
     }
   }
@@ -48,88 +43,77 @@ $(document).ready(function () {
   //Must be between 1 and 731
   function getSuperHero(id) {
     var queryURL = "https://superheroapi.com/api.php/10164273699360858/" + id;
+
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
       var name = response.name;
       var fullName = response.biography["full-name"];
-      var publisher = response.biography.publisher;
+      var searchObject = {};
 
       //Format the name and fullname to be used in comicvine api
       name = name.replace(/\sI+/g, "").replace(/(.+?)\s(.+?)\s(.+?)/, "$1 $3");
       fullName = fullName.replace(/(.+?)\s(.+?)\s(.+?)/, "$1 $3");
-      console.log(fullName);
 
-      //Array of names to use in search for superhero in comicvine api
-      var names = [];
-      names.push(name);
-      names.push(fullName);
+      //Object with search paramters to use for searc in comicvine api
+      searchObject.name = name;
+      searchObject.fullName = fullName;
+      searchObject.publisher = response.biography.publisher;
+      searchObject.aliases = [];
 
       var heroImage = response.image.url;
 
+      //Update DOM with superhero data
       $("#characterName").append("<h1>" + name + "</h1>");
-      $("#characterImage").append(
-        '<img id="image" src="' + heroImage + '"></img>'
-      );
+      $("#characterImage").append('<img id="image" src="' + heroImage + '"></img>');
 
       var aliases = response.biography.aliases;
       var aliasesText = "Aliases: ";
 
       for (var i = 0; i < aliases.length; i++) {
         aliasesText += i < aliases.length - 1 ? aliases[i] + ", " : aliases[i];
-        names.push(aliases[i]);
+        searchObject.aliases.push(aliases[i]);
       }
 
-      $("#characterDetails").append(
-        "<p>Full Name: " + response.biography["full-name"] + "</p>"
-      );
+      $("#characterDetails").append("<p>Full Name: " + response.biography["full-name"] + "</p>");
       $("#characterDetails").append("<p>" + aliasesText + "</p>");
-      $("#characterDetails").append(
-        "<p>Place of Birth: " + response.biography["place-of-birth"] + "</p>"
-      );
-      $("#characterDetails").append(
-        "<p>First Appearance: " +
-          response.biography["first-appearance"] +
-          "</p>"
-      );
-      $("#characterDetails").append(
-        "<p>Publisher: " + response.biography.publisher + "</p>"
-      );
+      $("#characterDetails").append("<p>Place of Birth: " + response.biography["place-of-birth"] + "</p>");
+      $("#characterDetails").append("<p>First Appearance: " + response.biography["first-appearance"] + "</p>");
+      $("#characterDetails").append("<p>Publisher: " + response.biography.publisher + "</p>");
 
-      getComics(names);
+      getComics(searchObject);
     });
   }
 
   //Function to get books and comics related to the superhero from goodreads api
-  function getComics(names) {
+  function getComics(searchObject) {
     //Remove punctuation and make names lower case to use in search
-    names = names.map((name) => normalizeName(name)).filter((x) => x);
-    console.log(names);
+    searchObject.aliases = searchObject.aliases.map((name) => normalizeName(name)).filter((x) => x);
+    searchObject.fullName = normalizeName(searchObject.fullName);
+    searchObject.name = normalizeName(searchObject.name);
+    searchObject.publisher = normalizeName(searchObject.publisher);
 
     //Get the result from the comicvine api search endpoint to get characterid
-    var queryURL = comicVineRoot + "search/?api_key=" + comicVineToken + "&query=" + names.toString() +
+    var queryURL = comicvineRoot + "search/?api_key=" + comicvineToken + "&query=" + searchObject.name +
       "&resources=character&resource_type=character&format=json&limit=100";
 
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
-
-      //Get the character from the searh results
-      var character = response.results.find((x) => names.includes(normalizeName(nullCheck(x.real_name))) ||
-          names.includes(normalizeName(nullCheck(x.name))));
-
-      console.log(character);
+      //Get the character from the search results
+      var character = response.results.find((x) =>
+          (searchObject.publisher.includes(normalizeName(x.publisher.name)) && searchObject.name === normalizeName(x.name)) ||
+          searchObject.fullName === normalizeName(x.real_name) ||
+          foundInAliases(x.aliases, searchObject.aliases)
+      );
 
       //Get the character details, specifically the issue credits that the character appeared in
       $.ajax({
-        url: comicVineRoot + "character/4005-" + character.id + "/?api_key=" + comicVineToken + "&format=json",
+        url: comicvineRoot + "character/4005-" + character.id + "/?api_key=" + comicvineToken + "&format=json",
         method: "GET",
       }).then(function (r) {
-        console.log(r);
         var comics = r.results.issue_credits.slice(0, 10);
 
         for (var i = 0; i < comics.length; i++) {
@@ -142,21 +126,15 @@ $(document).ready(function () {
   //Get the image url for the comics and set up the carousel
   function getComicDetails(id, index) {
     $.ajax({
-      url: comicVineRoot + "/issue/4000-" + id + "/?api_key=" + comicVineToken + "&format=json",
+      url: comicvineRoot + "/issue/4000-" + id + "/?api_key=" + comicvineToken + "&format=json",
       method: "GET",
     }).then(function (r) {
-      console.log(r);
-
       var active = index === 0 ? " active" : "";
+      var comicImage = r.results.image.super_url;
 
-      var comicImage = r.results.image.original_url;
       $(".carousel-inner").append(
-        "<div class='carousel-item" +
-          active +
-          "'><img class='d-block w-100' src=" +
-          comicImage +
-          " alt='book slide'></div>"
-      );
+        "<div class='carousel-item" + active + "'><img class='d-block w-100' src=" +
+          comicImage + " alt='book slide'></div>");
     });
   }
 
@@ -173,12 +151,18 @@ $(document).ready(function () {
     return result;
   }
 
-  function nullCheck(item) {
-    if (item == undefined || item == null) {
-      return "";
+  function foundInAliases(list, aliases) {
+    if (list && aliases) {
+      list = list.split("\n");
+
+      for (var i = 0; i < list.length; i++) {
+        if (aliases.includes(normalizeName(list[i]))) {
+          return true;
+        }
+      }
     }
 
-    return item;
+    return false;
   }
 
   function normalizeName(name) {
@@ -197,18 +181,25 @@ $(document).ready(function () {
   $("#myModal").modal();
 
   // EVENT LISTENERS
+
+  // listens for button clicks
   $(document).on("click", ".choice", function () {
     qIndex++;
     populateModal(qIndex);
   });
+
   $(document).on("click", "#goBtn", function () {
     event.preventDefault();
     userNumber = $("#userNumber").val();
-    console.log(userNumber)
-    if((userNumber <= 0) || (userNumber > 731) || (isNaN(userNumber)) ){
-      $("#numQuestion").text("'"+ userNumber + "' is not a valid answer. Please enter a number between 1 and 731.");
-    } else{
-      $('#myModal').modal('hide');
+    console.log(userNumber);
+    if (userNumber <= 0 || userNumber > 731 || isNaN(userNumber)) {
+      $("#numQuestion").text(
+        "'" +
+          userNumber +
+          "' is not a valid answer. Please enter a number between 1 and 731."
+      );
+    } else {
+      $("#myModal").modal("hide");
       getSuperHero(userNumber);
     }
   });
