@@ -102,6 +102,7 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
+
       //Get the character from the search results
       var character = response.results.find((x) =>
           (searchObject.publisher.includes(normalizeName(x.publisher.name)) && searchObject.name === normalizeName(x.name)) ||
@@ -181,7 +182,7 @@ $(document).ready(function () {
   $("#myModal").modal();
 
   // EVENT LISTENERS
-
+  
   // listens for button clicks
   $(document).on("click", ".choice", function () {
     qIndex++;
