@@ -146,7 +146,7 @@ $(document).ready(function () {
       var comicImage = r.results.image.super_url;
 
       $(".carousel-inner").append(
-        "<div class='carousel-item" + active + " col-12 col-sm-6 col-md-4 col-lg-3 px-0'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100 mx-auto' src=" +
+        "<div class='carousel-item" + active + " col-12 col-sm-6 col-md-4 col-lg-3 px-0'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100 h-100 mx-auto' src=" +
           comicImage + " alt='book slide'></a></div>");
     });
   }
