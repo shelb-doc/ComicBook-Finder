@@ -6,64 +6,6 @@
   text-align: center;
 }
 
-/* Top Margin */
-#nameRow {
-  margin-top: 40px;
-}
-
-/* Character Name Styling */
-#characterName {
-  height: 70px;
-  width: 500px;
-  text-align: center;
-  border-radius: 10px;
-  border-color: grey;
-  color: white;
-  transform: rotate(2deg);
-  margin: 15px;
-  padding: 0 5px;
-  background: #ddd;
-  border: 1px solid #222;
-  box-shadow: 3px 3px 0 #222;
-  margin: 0 auto;
-  margin-top: 30px;
-}
-
-/* Character's Detail styling */
-#characterDetails {
-  box-shadow: rgb(34, 34, 34) 3px 3px 0px;
-  width: auto;
-  display: block;
-  padding: 0px 5px;
-  background: white;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(34, 34, 34);
-  border-image: initial;
-  margin: 30px auto 0px;
-}
-
-.d-block {
-  margin-top: 25px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* character image holder styling */
-#characterimage {
-  height: 500px;
-  width: 400px;
-  border: solid;
-}
-
-/* site header styling */
-#logo {
-  float: left;
-  height: 200px;
-  width: auto;
-  margin-right: 20px;
-  margin-top: 20px;
-}
 /* Background image and font styling for the body  */
 body {
   background-image: url("background/bg3.png");
@@ -74,16 +16,6 @@ body {
   font-family: "Bangers", cursive;
   font-size: 25px;
 }
-aside {
-  margin: 25px;
-  width: 250px;
-  height: 600px;
-  background: #fff;
-  border: solid black;
-  border-color: black;
-  float: left;
-}
-/* character details holder styling */
 
 #myModal {
   font-style: italic;
@@ -107,19 +39,44 @@ aside {
   box-shadow: 2px 2px black inset;
 }
 
+/* site header styling */
+#logo {
+  float: left;
+  height: 200px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+/* Character Name Styling */
+#characterName {
+  height: 70px;
+  min-width: 350px;
+  max-width: 500px;
+  border-radius: 10px;
+  color: white;
+  transform: rotate(2deg);
+  margin: 15px;
+  padding: 10px 0;
+  background: #ddd;
+  border: 1px solid #222;
+  box-shadow: 3px 3px 0 #222;
+  margin: 0 auto;
+}
+
 /* character image from api call styling */
 #image {
-  height: 700px;
-  width: 820px;
-  margin-top: 10px;
   object-fit: contain;
-  display: block;
-  margin-left: 50%;
-  margin-right: 50%;
-  height: 700px;
-  width: 600px;
-  margin-top: 40px;
-  border-style: none;
+  display: inline-block;
+  height: 500px;
+  width: 500px;
+}
+
+/* Character's Detail styling */
+#characterDetails {
+  box-shadow: rgb(34, 34, 34) 3px 3px 0px;
+  background: white;
+  border: 1px solid rgb(34, 34, 34);
+  margin-top: 30px;
 }
 
 /* <p> styling from api call for Character details */
@@ -127,12 +84,8 @@ p {
   font-size: 12pt;
 }
 
-.m {
-  float: left;
-}
 
 /* footer styling */
-
 footer {
   height: 48px;
   line-height: 60px;
@@ -142,26 +95,9 @@ footer {
 }
 
 /* // Small devices (landscape phones, 576px and up) */
-@media (max-width: 767.98px) {
+@media (max-width: 510px){
   #logo {
-    width: 20%;
-    height: 20%;
-  }
-
-  #characterDetails {
-    width: 100%;
-  }
-
-  /* character image holder styling */
-  #characterImage {
-    height: 100%;
-    width: 100%;
-    float: right;
-  }
-
-  #image {
-    height: auto;
-    width: 100%;
-    float: left;
+    display: none;
   }
 }
+
