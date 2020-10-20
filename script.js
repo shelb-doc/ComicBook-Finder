@@ -66,7 +66,7 @@ $(document).ready(function () {
 
       //Update DOM with superhero data
       $("#characterName").append("<h1>" + name + "</h1>");
-      $("#characterImage").append('<img id="image" src="' + heroImage + '"></img>');
+      $("#image").attr("src", heroImage).attr("alt", name);
 
       var aliases = response.biography.aliases;
       var aliasesText = "Aliases: ";
