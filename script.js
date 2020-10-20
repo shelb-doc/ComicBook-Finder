@@ -66,6 +66,7 @@ $(document).ready(function () {
 
       //Update DOM with superhero data
       $("#characterName").append("<h1>" + name + "</h1>");
+      $('#issue-header span').text(name);
       $("#image").attr("src", heroImage).attr("alt", name);
 
       var aliases = response.biography.aliases;
@@ -145,7 +146,7 @@ $(document).ready(function () {
       var comicImage = r.results.image.super_url;
 
       $(".carousel-inner").append(
-        "<div class='carousel-item" + active + "'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100' src=" +
+        "<div class='carousel-item" + active + " col-12 col-sm-6 col-md-4 col-lg-3 px-0'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100 mx-auto' src=" +
           comicImage + " alt='book slide'></a></div>");
     });
   }
@@ -215,7 +216,7 @@ $(document).ready(function () {
     populateModal(qIndex);
   });
 
-  $(document).on("click", "#goBtn", function () {
+  $(document).on("click", "#goBtn", function (event) {
     event.preventDefault();
     userNumber = $("#userNumber").val();
 
@@ -231,4 +232,27 @@ $(document).ready(function () {
       getSuperHero(userNumber);
     }
   });
+
+  $('#carouselExampleControls').on('slide.bs.carousel', function (e) {
+    var e = $(e.relatedTarget);
+    console.log(e);
+    var index = e.index();
+    console.log("Index :  " + index);
+    
+    var itemsPerSlide = 4;
+    var totalItems = $('.carousel-item').length;
+    
+    if (index >= totalItems-(itemsPerSlide-1)) {
+        var it = itemsPerSlide - (totalItems - index);
+        for (var i=0; i<it; i++) {
+            // append slides to end
+            if (e.direction=="left") {
+                $('.carousel-item').eq(i).appendTo('.carousel-inner');
+            }
+            else {
+                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+            }
+        }
+    }
+});
 });
