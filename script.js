@@ -141,7 +141,6 @@ $(document).ready(function () {
       url: comicvineRoot + "/issue/4000-" + id + "/?api_key=" + comicvineToken + "&format=json",
       method: "GET",
     }).then(function (r) {
-      console.log(r);
       var active = index === 0 ? " active" : "";
       var comicImage = r.results.image.super_url;
       var comicName =  r.results.volume.name ? r.results.volume.name : "Slide " + index + 1;
@@ -236,10 +235,10 @@ $(document).ready(function () {
     }
   });
 
+  //When an item is slid append it to the list again
   $('#carouselExampleControls').on('slide.bs.carousel', function (e) {
     var e = $(e.relatedTarget);
     var index = e.index();
-    console.log("Index :  " + index);
     
     var itemsPerSlide = 4;
     var totalItems = $('.carousel-item').length;
