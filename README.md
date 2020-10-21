@@ -3,7 +3,11 @@
 
 ## Description 
 
-
+A Comic Book Finder that is based off of a random number and some questions.
+A Character is generated from a pool based on the number that you give.
+    Then you get a picture of the character.
+    Next you get a little bio.
+    Then you get the Comics and they are clickable to go to the Comic.
 
 ## Installation
 
@@ -20,7 +24,7 @@ To implement changes:
 ## Usage 
 
 
-![Alt Text]()
+![Alt Text](https://media.giphy.com/media/bdZbEvlLq3rLlLHnQH/giphy.gif)
 
 To view this site live [click here.](https://shelb-doc.github.io/ComicBook-Finder/)
 
@@ -28,6 +32,10 @@ To view this locally, clone the repository, and open [index.html](index.html) wi
 
 
 ## Credits
+
+[Superhero API](https://www.superheroapi.com/index.html)
+
+[ComicVine API](https://comicvine.gamespot.com/)
 
 
 ## License
