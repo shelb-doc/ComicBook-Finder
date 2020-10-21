@@ -144,10 +144,13 @@ $(document).ready(function () {
       console.log(r);
       var active = index === 0 ? " active" : "";
       var comicImage = r.results.image.super_url;
+      var comicName =  r.results.volume.name ? r.results.volume.name : "Slide " + index + 1;
+
+
 
       $(".carousel-inner").append(
         "<div class='carousel-item" + active + " col-12 col-sm-6 col-md-4 col-lg-3 px-0'><a href='" + r.results.site_detail_url + "' target='_blank'><img class='d-block w-100 h-100 mx-auto' src=" +
-          comicImage + " alt='book slide'></a></div>");
+          comicImage + " alt='" + comicName + "'></a></div>");
     });
   }
 
@@ -235,7 +238,6 @@ $(document).ready(function () {
 
   $('#carouselExampleControls').on('slide.bs.carousel', function (e) {
     var e = $(e.relatedTarget);
-    console.log(e);
     var index = e.index();
     console.log("Index :  " + index);
     
